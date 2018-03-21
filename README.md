@@ -1,6 +1,7 @@
 # 实验环境
 
 Win7 + Python3.6.4
+
 编辑器推荐使用PyCharm
 ```python
 print("I love python")
