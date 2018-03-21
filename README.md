@@ -1,4 +1,7 @@
+# 实验环境
+
+Win7 + Python3.6.4
+
 ```python
-def foo(name):
-    print(name)
+print("I love python")
 ```
