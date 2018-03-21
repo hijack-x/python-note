@@ -13,7 +13,7 @@ class MyThread(threading.Thread):
 
     def run(self):
         print('thread begin: ', self.name)
-        time.sleep(random.randint(1, 3))
+        time.sleep(random.randint(1, 3)) # sleep a random time
         print('thread end: ', self.name)
 
 
