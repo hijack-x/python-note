@@ -20,3 +20,7 @@ data2 = data.encode('utf-8')
 resp = urllib.request.urlopen(url, data2)
 data = resp.read()
 print(data)
+
+# get response headers
+resp = urllib.request.urlopen(url)
+print(resp.getheaders())
