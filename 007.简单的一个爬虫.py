@@ -8,9 +8,11 @@ import time
 import os
 import threading
 
+
 def download(url):
     resp = urllib.request.urlopen(url)
     return resp.read()
+
 
 def findAllLinks(data, refUrl):
     data = data.decode('utf-8')
@@ -37,6 +39,7 @@ def findAllLinks(data, refUrl):
             links.append(parentUrl + '/' + val)
     return links
 
+
 def url2path(url):
     arr = url.split('://')
     filename = arr[1]
@@ -52,6 +55,7 @@ def url2path(url):
         filename += 'index.html'
     return filename
 
+
 def writeFile(filename, data):
     dirname = os.path.dirname(filename)
     if not os.path.exists(dirname):
@@ -59,6 +63,7 @@ def writeFile(filename, data):
     file = open(filename, 'wb')
     file.write(data)
     file.close()
+
 
 def doJob(url):
     filename = url2path(url)
@@ -69,7 +74,7 @@ def doJob(url):
         data = download(url)
         writeFile(fullPath, data)
         print('save to', fullPath)
-    except (BaseException) as e:
+    except BaseException as e:
         print('download or save fail', e)
 
     time.sleep(0.05)
@@ -79,15 +84,15 @@ class MyThread(threading.Thread):
     def __init__(self, threadNum, links, idx):
         threading.Thread.__init__(self)
         self.threadNum = threadNum
-        self.links = links;
-        self.idx = idx;
-        self.count = 0;
+        self.links = links
+        self.idx = idx
+        self.count = 0
 
     def run(self):
         for i in range(self.idx, len(self.links), self.threadNum):
             link = self.links[i]
             doJob(link)
-            #print(link, self.idx, i)
+            # print(link, self.idx, i)
 
 
 url = 'http://www.runoob.com/python3/python3-tutorial.html'
